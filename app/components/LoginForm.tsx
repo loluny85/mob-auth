@@ -8,6 +8,9 @@ import useThemeStore from '../store/useThemeStore';
 import { useTranslation } from "react-i18next";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
 import { auth, generateToken, messaging, onMessageListener } from "../../firebaseConfig";
+import { useNavigation } from '@react-navigation/native';
+import Profile from '../screens/Profile';
+
 
 const schema = z.object({
   emailOrUserName: z.string(),
@@ -27,11 +30,15 @@ const LoginForm = () => {
 
   const { login } = useAuthStore();
 
+  const navigation = useNavigation();
+
+
   const onSubmit = async (data:any) => {
     try {
         const response = await signInWithEmailAndPassword(auth, 'kaykay@menon.com', 'farziseries');
         if (response && response.user) {
           console.log("Login successful:", response.user);
+          navigation.navigate('Profile');
         } else {
           console.log("Unexpected response:", response);
         }
