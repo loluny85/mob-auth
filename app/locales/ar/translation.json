@@ -1,0 +1,23 @@
+{
+    "userNameShort": "اسم المستخدم طويل جدًا",
+    "userNameLong": "اسم المستخدم قصير جدًا",
+    "userNameIncorrectFormat": "تنسيق اسم المستخدم غير صحيح",
+    "username": "اسم المستخدم",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "country": "بلد",
+    "selectCountry": "اختر البلد",
+    "register": "تسجيل",
+    "login": "تسجيل الدخول",
+    "passwordForgot": "نسيت كلمة المرور",
+    "accountDontHave": "ليس لديك حساب؟",
+    "accountHave": "هل لديك حساب؟",
+    "profileDetails": "تفاصيل الملف الشخصي",
+    "loginSuccessful": "تم تسجيل الدخول بنجاح",
+    "loggingIn": "تسجيل الدخول...",
+    "creatingUser": "إنشاء المستخدم...",
+    "checkYourEmail": "تحقق من بريدك الإلكتروني",
+    "enterEmail": "أدخل البريد الإلكتروني",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "signedOut": "تم تسجيل الخروج بنجاح"
+}

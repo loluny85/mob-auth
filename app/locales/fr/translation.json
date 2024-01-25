@@ -1,0 +1,23 @@
+{
+  "userNameShort": "Nom d'utilisateur trop long",
+  "userNameLong": "Nom d'utilisateur trop court",
+  "userNameIncorrectFormat": "Nom d'utilisateur incorrect",
+  "username": "Nom d'utilisateur",
+  "email": "Courriel",
+  "password": "Mot de passe",
+  "country": "Pays",
+  "selectCountry": "Sélectionner le pays",
+  "register": "S'inscrire",
+  "login": "Se connecter",
+  "passwordForgot": "Mot de passe oublié",
+  "accountDontHave": "Vous n'avez pas de compte ?",
+  "accountHave": "Vous avez un compte ?",
+  "profileDetails": "Détails du profil",
+  "loginSuccessful": "Connexion réussie",
+  "loggingIn": "Connexion en cours...",
+  "creatingUser": "Création de l'utilisateur...",
+  "checkYourEmail": "Vérifiez votre e-mail",
+  "enterEmail": "Entrez l'adresse e-mail",
+  "resetPassword": "Réinitialiser le mot de passe",
+  "signedOut": "Déconnexion réussie"
+}

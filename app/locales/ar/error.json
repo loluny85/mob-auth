@@ -1,0 +1,9 @@
+{
+    "INVALID_LOGIN_CREDENTIALS": "لا تصاريح الدخول صالحة",
+    "USER_CREATION_FAILED": "فشل إنشاء المستخدم",
+    "USER_CREATION_NOT_SUCCESSFUL": "فشل إنشاء المستخدم",
+    "USER_FETCH_FAILED": "فشل جلب تفاصيل المستخدم",
+    "EMAIL_EXISTS": "عنوان البريد الإلكتروني موجود بالفعل.",
+    "RESET_PASSWORD_FAILED": "فشلت إعادة تعيين كلمة المرور",
+    "SIGNOUT_FAILED": "فشلت عملية الخروج"
+}

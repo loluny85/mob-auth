@@ -1,0 +1,9 @@
+{
+    "INVALID_LOGIN_CREDENTIALS": "Login credentials are not valid",
+    "USER_CREATION_FAILED": "User creation failed",
+    "USER_CREATION_NOT_SUCCESSFUL": "User creation did not succeed",
+    "USER_FETCH_FAILED": "Fetching user details failed",
+    "EMAIL_EXISTS": "Email id already exists",
+    "RESET_PASSWORD_FAILED": "Reset password failed",
+    "SIGNOUT_FAILED": "Signout failed"
+}

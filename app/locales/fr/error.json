@@ -1,0 +1,9 @@
+{
+    "INVALID_LOGIN_CREDENTIALS": "Les identifiants de connexion ne sont pas valides.",
+    "USER_CREATION_FAILED": "Échec de la création de l'utilisateur",
+    "USER_CREATION_NOT_SUCCESSFUL": "La création de l'utilisateur n'a pas réussi",
+    "USER_FETCH_FAILED": "Échec de la récupération des détails de l'utilisateur",
+    "EMAIL_EXISTS": "L'adresse e-mail existe déjà.",
+    "RESET_PASSWORD_FAILED": "Échec de la réinitialisation du mot de passe",
+    "SIGNOUT_FAILED": "Échec de la déconnexion"
+}
