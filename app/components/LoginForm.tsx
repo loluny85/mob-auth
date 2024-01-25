@@ -11,7 +11,6 @@ import { auth, generateToken, messaging, onMessageListener } from "../../firebas
 import { useNavigation } from '@react-navigation/native';
 import Profile from '../screens/Profile';
 
-
 const schema = z.object({
   emailOrUserName: z.string(),
   password: z.string().min(8),
@@ -26,20 +25,21 @@ const LoginForm = () => {
     resolver: zodResolver(schema),
   });
   const { t } = useTranslation();
-  const { theme } = useThemeStore();
+  const { isRtl, theme } = useThemeStore();
 
   const { login } = useAuthStore();
 
   const navigation = useNavigation();
 
-
   const onSubmit = async (data:any) => {
+    console.log(data)
+    // console.log(data.password)
     try {
-        const response = await signInWithEmailAndPassword(auth, 'daya.shetty@gmail.com', 'shreyapurvi');
+        const response = await signInWithEmailAndPassword(auth, data.emailOrUserName, data.password);
         if (response && response.user) {
-          console.log("Login successful:", response.user);
+          
           login({
-            email: 'daya.shetty@gmail.com',
+            email: data.emailOrUserName,
             userName: data.username
           })
           navigation.navigate('Profile');
@@ -53,7 +53,7 @@ const LoginForm = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.form}>
+      <View style={[styles.form]}>
         <Text style={[styles.title, { fontSize: theme.titleFontSize }]}>{t('login')}</Text>
         <Controller
           control={control}
@@ -65,6 +65,7 @@ const LoginForm = () => {
             onChangeText={field.onChange}
             value={field.value}
             style={styles.input}
+            autoCapitalize="none"
           />
               <Text style={styles.error}>{errors.emailOrUserName?.message}</Text>
             </View>
@@ -84,6 +85,7 @@ const LoginForm = () => {
             value={field.value}
             style={styles.input}
             secureTextEntry
+            autoCapitalize="none"
           />
               <Text style={styles.error}>{errors.password?.message}</Text>
             </View>
@@ -132,6 +134,9 @@ const styles = StyleSheet.create({
   error: {
     color: 'red',
     fontSize: 14,
+  },
+  containerRTL: {
+    flexDirection: 'row-reverse', // RTL layout
   },
 });
 

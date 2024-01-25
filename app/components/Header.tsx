@@ -6,6 +6,8 @@ import { languageOptions } from '../config/config';
 import { useTranslation } from "react-i18next";
 import useThemeStore from '../store/useThemeStore';
 
+
+
 const Header = ({ title, onSignOut, isAuthenticated }) => {
     const [selectedValue, setSelectedValue] = useState(null);
     const { i18n } = useTranslation();
@@ -13,17 +15,16 @@ const Header = ({ title, onSignOut, isAuthenticated }) => {
 const [language, setLanguage] = useState('')
 
   const changeLanguage = (lng: ThemeKey) => {
-    
     setLanguage(lng)
     i18n.changeLanguage(lng);
     setTheme(lng);
     setIsRtl(lng)
+    
   };
 
   return (
     <View style={styles.container}>
-        {console.log('theme is ', theme)}
-        <Ionicons name="basketball" size="28" color="white"></Ionicons>
+        <Ionicons name="basketball" size={24} color="white"></Ionicons>
       <View>
       {isAuthenticated && (
         <TouchableOpacity onPress={onSignOut} style={styles.signOutButton}>

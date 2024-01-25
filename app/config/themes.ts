@@ -7,7 +7,7 @@ export type Theme = {
   secondaryColor: string;
   headerBackground: string;
   bodyBackground: string;
-  titleFontSize: string
+  titleFontSize: number
 };
 
 type TThemesType = {
@@ -21,28 +21,28 @@ const themes: TThemesType = {
     secondaryColor: 'white',
     headerBackground: 'bg-blue-500',
     bodyBackground: `from-blue-500`,
-    titleFontSize: 'text-2xl'
+    titleFontSize: 32
   },
   en: {
     primaryColor: 'blue',
     secondaryColor: 'white',
     headerBackground: 'bg-blue-500',
     bodyBackground: `from-blue-500`,
-    titleFontSize: 'text-2xl'
+    titleFontSize: 32
   },
   fr: {
     primaryColor: 'rose',
     secondaryColor: 'white',
     headerBackground: 'bg-rose-500',
     bodyBackground: `from-rose-500`,
-    titleFontSize: 'text-3xl'
+    titleFontSize: 24
   },
   ar: {
     primaryColor: 'green',
     secondaryColor: 'white',
     headerBackground: 'bg-green-500',
     bodyBackground: `from-green-500`,
-    titleFontSize: 'text-xl'
+    titleFontSize: 20
   },
 };
 

@@ -6,12 +6,15 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/LangSwitcher';
 import Header from '../components/Header';
 import ResetPasswordForm from '../components/ResetPasswordForm';
+import useThemeStore from '../store/useThemeStore';
+import { useNavigation } from "@react-navigation/native";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const [resetPassword, setResetPassword] = useState(false);
-
+    const {isRtl} = useThemeStore()
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
@@ -23,13 +26,15 @@ const App = () => {
   // handleResetPassword('abc')
 
   return (
-    <>
-      <Header />
+    <View >
+     <Header />
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={[styles.leftSide, { backgroundColor: 'your-left-side-color' }]} />
-        <View style={styles.rightSide}>
+      
+        {/* <View style={[styles.leftSide, { backgroundColor: 'your-left-side-color' }]} /> */}
+        <View style={[styles.rightSide]}>
           {isLogin ? <LoginForm /> : <RegisterForm />}
-          <View style={styles.buttonContainer}>
+          <View style={[styles.rightSide]}>
+          <View style={[styles.buttonContainer, isRtl ? styles.containerRTL : null]}>
             {isLogin ? (
               <>
                 <View>
@@ -39,20 +44,21 @@ const App = () => {
                 <View>
                 <Text className="font-bold">{t('accountDontHave')}</Text>
 
-                  <Button title="register" />
+                  <Button title="register" onPress={toggleForm}/>
                 </View>
               </>
             ) : null}
             {!isLogin ? (
-              <>
+              <View>
                <Text> {t('accountHave')} </Text>
-                <Button title="login" />
-              </>
+                <Button title="login" onPress={()=>{toggleForm()}}/>
+              </View>
             ) : null}
+            </View>
           </View>
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 };
 
@@ -73,6 +79,12 @@ const styles = StyleSheet.create({
     marginTop: 4,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  containerLTR: {
+    flexDirection: 'row', // LTR layout
+  },
+  containerRTL: {
+    flexDirection: 'row-reverse', // RTL layout
   },
 });
 

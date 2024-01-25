@@ -25,17 +25,17 @@ const ProfilePage: React.FC = () => {
 
   const fetchUserDetails = async () => {
     try {
-     console.log(db)
+    //  console.log(db)
      
       const querySnapshot = await getDocs(collection(db, 'users'));
-      console.log(querySnapshot)
+    //   console.log(querySnapshot)
       querySnapshot.forEach((doc) => {
         
         const { email: userEmail } = doc.data();
         
         if (userEmail === email) {
             
-            console.log(doc.data())
+            // console.log(doc.data())
           setUserData(doc.data() as UserData);
         }
       });

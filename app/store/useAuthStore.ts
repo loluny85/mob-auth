@@ -1,5 +1,6 @@
 import {create} from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type TState = {
   isAuthenticated: boolean;
@@ -44,7 +45,7 @@ const useAuthStore = create<TState>(persist((set) => ({
   }
 }),{
   name: "auth store",
-  storage: createJSONStorage(()=>sessionStorage)
+  storage: createJSONStorage(()=>AsyncStorage)
 }
 ) as any
 );
