@@ -35,9 +35,13 @@ const LoginForm = () => {
 
   const onSubmit = async (data:any) => {
     try {
-        const response = await signInWithEmailAndPassword(auth, 'kaykay@menon.com', 'farziseries');
+        const response = await signInWithEmailAndPassword(auth, 'daya.shetty@gmail.com', 'shreyapurvi');
         if (response && response.user) {
           console.log("Login successful:", response.user);
+          login({
+            email: 'daya.shetty@gmail.com',
+            userName: data.username
+          })
           navigation.navigate('Profile');
         } else {
           console.log("Unexpected response:", response);
