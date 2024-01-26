@@ -22,5 +22,7 @@
     "signedOut": "تم تسجيل الخروج بنجاح",
     "sendingEmail": "إرسال البريد الإلكتروني...",
     "createAccount": "إنشاء حساب",
-    "userCreated": "تم إنشاء الحساب بنجاح"
+    "userCreated": "تم إنشاء الحساب بنجاح",
+    "signOut": "تسجيل الخروج",
+    "selectLanguage": "اختر اللغة"
 }

@@ -1,5 +1,3 @@
-// config/themes.ts
-
 export type ThemeKey = 'default' | 'en' | 'fr' | 'ar';
 
 export type Theme = {

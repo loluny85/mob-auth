@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Button, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import { languageOptions } from "../config/config";
@@ -13,14 +13,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast  from 'react-native-toast-message';
 
 const Header = () => {
-  const [selectedValue, setSelectedValue] = useState(null);
   const { t, i18n } = useTranslation();
-  const { theme, setTheme, setIsRtl } = useThemeStore();
+  const { setTheme, setIsRtl } = useThemeStore();
   const [language, setLanguage] = useState("");
   const {isAuthenticated, signout} = useAuthStore()
   const navigation = useNavigation();
 
-  const changeLanguage = (lng: ThemeKey) => {
+  const changeLanguage = (lng: any) => {
     setLanguage(lng);
     i18n.changeLanguage(lng);
     setTheme(lng);
@@ -89,21 +88,21 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     padding: 16,
-    backgroundColor: "#3498db", // Header background color
+    backgroundColor: "#3498db",
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "white", // Title text color
+    color: "white",
   },
   signOutButton: {
     color: "#fff",
     padding: 8,
     borderRadius: 5,
-    backgroundColor: "blue", // Sign out button background color
+    backgroundColor: "blue",
   },
   signOutButtonText: {
-    color: "white", // Sign out button text color
+    color: "white",
   },
 };
 

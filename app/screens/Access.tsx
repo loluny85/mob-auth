@@ -40,7 +40,7 @@ const App = () => {
                 <>
                   <View style={{ marginTop: 80 }}>
                     <Button
-                      title="Reset password"
+                      title={t('resetPassword')}
                       onPress={() => {
                         setResetPassword(true);
                       }}

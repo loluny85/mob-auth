@@ -4,7 +4,7 @@ type ValidationConfig = {
     validRegex: string | any;
     country: string;
     code: string;
-    formatErrorMsg?: string;
+    formatErrorMsg?: string; //Country specific username format mismatch error message
 };
 
 type ValidationConfigs = {

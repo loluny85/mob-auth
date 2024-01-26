@@ -66,25 +66,17 @@ const RegisterForm = () => {
     resolver: zodResolver(schema),
   });
 
-  const {
-    username,
-    email,
-    password,
-    country,
-    register: registerUser,
-  } = useAuthStore();
-
   const onSubmit = async (data: any) => {
     setLoading(true);
     reset();
     try {
-      const response = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
       try {
-        const docRef = await addDoc(collection(db, "users"), {
+        await addDoc(collection(db, "users"), {
           email: data.email,
           userName: data.username,
           country: data.country,
@@ -97,7 +89,7 @@ const RegisterForm = () => {
         setLoading(false);
         reset()
         Toast.show({
-          type: 'success', // or 'error', 'info', 'custom'
+          type: 'success',
           text1: t('userCreated'),
           text2: '',
           visibilityTime: 2000,
@@ -120,7 +112,7 @@ const RegisterForm = () => {
 
   const showFailureErrorToast = () => {
     Toast.show({
-      type: 'error', // or 'error', 'info', 'custom'
+      type: 'error',
       text1: t('USER_CREATION_FAILED'),
       text2: '',
       visibilityTime: 2000,
@@ -208,9 +200,9 @@ const RegisterForm = () => {
                 style={pickerSelectStyles}
               />
             )}
-            name="country" // Make sure the name matches the field name in the form
-            rules={{ required: "Please select a country" }} // Add any rules if needed
-            defaultValue="" // Set the initial value here if needed
+            name="country"
+            rules={{ required: "Please select a country" }}
+            defaultValue=""
           />
           <Text style={styles.error}>
             {errors.country?.message && <>{errors.password?.message}</>}

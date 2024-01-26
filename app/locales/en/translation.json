@@ -22,5 +22,7 @@
     "signedOut": "Signed out successfully",
     "sendingEmail": "Sending Email...",
     "createAccount": "Create account",
-    "userCreated": "Account created successfully"
+    "userCreated": "Account created successfully",
+    "signOut": "signout",
+    "selectLanguage": "Select language"
 }

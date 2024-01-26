@@ -22,5 +22,7 @@
   "signedOut": "Déconnexion réussie",
   "sendingEmail": "Envoi de l'e-mail...",
   "createAccount": "Créer un compte",
-  "userCreated": "Compte créé avec succès"
+  "userCreated": "Compte créé avec succès",
+  "signOut": "Déconnexion",
+  "selectLanguage": "Sélectionner la langue"
 }

@@ -6,7 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { useAuthStore } from "../store/useAuthStore";
 import { useTranslation } from "react-i18next";
-import Toast  from 'react-native-toast-message';
+import Toast from 'react-native-toast-message';
 interface UserData {
   [key: string]: string;
 }
@@ -14,32 +14,28 @@ interface UserData {
 const ProfilePage: React.FC = () => {
   const [userData, setUserData] = useState<UserData>({});
   const { theme } = useThemeStore();
-
   const { email } = useAuthStore();
-
   const { t } = useTranslation();
 
+  // Effect to fetch user details when the email changes
   useEffect(() => {
     fetchUserDetails();
   }, [email]);
 
   const fetchUserDetails = async () => {
     try {
-      //  console.log(db)
-
       const querySnapshot = await getDocs(collection(db, "users"));
-      //   console.log(querySnapshot)
       querySnapshot.forEach((doc) => {
         const { email: userEmail } = doc.data();
 
         if (userEmail === email) {
-         
           setUserData(doc.data() as UserData);
         }
       });
     } catch (error: any) {
+      // Show error toast if fetching user details fails
       Toast.show({
-        type: 'error', // or 'error', 'info', 'custom'
+        type: 'error',
         text1: t('USER_FETCH_FAILED'),
         text2: '',
         visibilityTime: 2000,
@@ -47,13 +43,13 @@ const ProfilePage: React.FC = () => {
         topOffset: 30
       });
     }
-  };
+  };  
 
   return (
     <View style={styles.container}>
       <Header />
       <View style={styles.contentContainer}>
-      <Toast />
+        <Toast />
         <Text style={styles.title}>{t("profileDetails")}</Text>
         {Object.entries(userData).map(([key, value]) => (
           <View key={key} style={styles.detailContainer}>

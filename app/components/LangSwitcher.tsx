@@ -9,7 +9,6 @@ const LanguageSwitcher = () => {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-    // Implement setTheme and setIsRtl as needed for your Expo app
   };
 
   return (
