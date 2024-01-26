@@ -42,6 +42,7 @@ Follow these steps to run the mobile app locally:
     - Press `a` for Android or `i` for iOS to open the app in the corresponding emulator on your laptop.
 
     Ensure that you have Expo Go installed on your mobile device or have set up the Android or iOS emulator on your laptop.
+    Ideal to have Node 18 and above for installation
 
 ## Firebase Configuration
 
