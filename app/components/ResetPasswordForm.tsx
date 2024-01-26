@@ -5,14 +5,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebaseConfig'; // Make sure to import your Firebase configuration
+import { useTranslation } from "react-i18next";
+import Toast from 'react-native-toast-message';
 
 const schema = z.object({
-  email: z.string().email(),
-});
+  email: z.string(),
+}).refine(data => data.email?.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/), {
+  path: ["email"],
+  message: 'INVALID_EMAIL'
+})
 
 const ResetForm = () => {
   const [loading, setLoading] = useState(false);
-
+const {t} = useTranslation()
   const {
     control,
     handleSubmit,
@@ -29,18 +34,25 @@ const ResetForm = () => {
     try {
       await sendPasswordResetEmail(auth, data.email);
       setLoading(false);
+      Toast.show({
+        type: 'success',
+        text1: t('checkYourEmail'),
+        text2: '',
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 30
+      });
       // Handle success, e.g., navigate to a success screen or show a toast
     } catch (error) {
       setLoading(false);
       // Handle error, e.g., show an error toast
-      console.error('Reset password failed:', error.message);
     }
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        
+      <Toast/>
         <Controller
           control={control}
           render={({ field }) => (
@@ -57,6 +69,7 @@ const ResetForm = () => {
           rules={{ required: true }}
           defaultValue=""
         />
+        <Text style={styles.error}>{t(errors.email?.message)}</Text>
         <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
           disabled={loading}
@@ -93,6 +106,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
   },
+  error: {
+    color: 'red',
+    fontSize: 14,
+  }
 });
 
 export default ResetForm;

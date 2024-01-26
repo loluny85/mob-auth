@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, Text, Button } from 'react-native';
-import LoginForm from '../components/LoginForm';
-import RegisterForm from '../components/RegisterForm';
-import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from '../components/LangSwitcher';
-import Header from '../components/Header';
-import ResetPasswordForm from '../components/ResetPasswordForm';
-import useThemeStore from '../store/useThemeStore';
+import React, { useState } from "react";
+import { View, StyleSheet, ScrollView, Text, Button } from "react-native";
+import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../components/LangSwitcher";
+import Header from "../components/Header";
+import ResetPasswordForm from "../components/ResetPasswordForm";
+import useThemeStore from "../store/useThemeStore";
 import { useNavigation } from "@react-navigation/native";
+import { useAuthStore } from "../store/useAuthStore";
+
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const response = useAuthStore()
   const { t } = useTranslation();
   const navigation = useNavigation();
   const [resetPassword, setResetPassword] = useState(false);
-    const {isRtl} = useThemeStore()
+  const { isRtl } = useThemeStore();
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
@@ -26,33 +29,57 @@ const App = () => {
   // handleResetPassword('abc')
 
   return (
-    <View >
-     <Header />
+    <View>
+      <Header />
       <ScrollView contentContainerStyle={styles.container}>
-      
-        {/* <View style={[styles.leftSide, { backgroundColor: 'your-left-side-color' }]} /> */}
         <View style={[styles.rightSide]}>
           {isLogin ? <LoginForm /> : <RegisterForm />}
           <View style={[styles.rightSide]}>
-          <View style={[styles.buttonContainer, isRtl ? styles.containerRTL : null]}>
-            {isLogin ? (
-              <>
-                <View>
-                <Button title="Reset password" onPress={()=>{setResetPassword(true)}}/>
-                  {resetPassword ? <ResetPasswordForm /> : null}
+            <View style={[isRtl ? styles.containerRTL : null]}>
+              {isLogin ? (
+                <>
+                  <View style={{ marginTop: 80 }}>
+                    <Button
+                      title="Reset password"
+                      onPress={() => {
+                        setResetPassword(true);
+                      }}
+                    />
+                    {resetPassword ? <ResetPasswordForm /> : null}
+                  </View>
+
+                  <View
+                    style={[
+                      styles.createAccountContainer,
+                      isRtl ? styles.containerRTL : styles.containerLTR,
+                    ]}
+                  >
+                    <Text className="font-bold">{t("accountDontHave")}</Text>
+                    <Button
+                      title={t("createAccount")}
+                      onPress={() => {
+                        toggleForm();
+                      }}
+                    />
+                  </View>
+                </>
+              ) : null}
+              {!isLogin ? (
+                <View
+                  style={[
+                    styles.createAccountContainer,
+                    isRtl ? styles.containerRTL : styles.containerLTR,
+                  ]}
+                >
+                  <Text> {t("accountHave")} </Text>
+                  <Button
+                    title={t("login")}
+                    onPress={() => {
+                      toggleForm();
+                    }}
+                  />
                 </View>
-                <View>
-                {/* <Text className="font-bold">{t('accountDontHave')}</Text> */}
-                  <Button title="Create account" onPress={toggleForm}/>
-                </View>
-              </>
-            ) : null}
-            {!isLogin ? (
-              <View>
-               <Text> {t('accountHave')} </Text>
-                <Button title="login" onPress={()=>{toggleForm()}}/>
-              </View>
-            ) : null}
+              ) : null}
             </View>
           </View>
         </View>
@@ -65,25 +92,26 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
   },
-  leftSide: {
-    flex: 1,
-    // Add your styles for the left side
-  },
   rightSide: {
     flex: 1,
     padding: 8,
-    // Add your styles for the right side
   },
   buttonContainer: {
     marginTop: 4,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   containerLTR: {
-    flexDirection: 'row', // LTR layout
+    flexDirection: "row",
   },
   containerRTL: {
-    flexDirection: 'row-reverse', // RTL layout
+    flexDirection: "row-reverse",
+  },
+  createAccountContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 80,
   },
 });
 

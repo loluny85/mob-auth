@@ -20,5 +20,6 @@
   "enterEmail": "Entrez l'adresse e-mail",
   "resetPassword": "Réinitialiser le mot de passe",
   "signedOut": "Déconnexion réussie",
-  "sendingEmail": "Envoi de l'e-mail..."
+  "sendingEmail": "Envoi de l'e-mail...",
+  "createAccount": "Créer un compte"
 }

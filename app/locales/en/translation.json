@@ -20,5 +20,6 @@
     "enterEmail": "Enter email",
     "resetPassword": "Reset password",
     "signedOut": "Signed out successfully",
-    "sendingEmail": "Sending Email..."
+    "sendingEmail": "Sending Email...",
+    "createAccount": "Create account"
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -11,7 +11,7 @@ import { auth, db, generateToken, messaging, onMessageListener } from "../../fir
 import { useNavigation } from '@react-navigation/native';
 import Profile from '../screens/Profile';
 import { MIN_PASSWORD_LENGTH } from '../config/config';
-import Toast, {BaseToast} from 'react-native-toast-message';
+import Toast  from 'react-native-toast-message';
 import { collection, getDocs } from 'firebase/firestore';
 
 const schema = z.object({
@@ -28,7 +28,7 @@ const schema = z.object({
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const { control, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: zodResolver(schema),
   });
   const { t } = useTranslation();
@@ -56,6 +56,7 @@ const LoginForm = () => {
           autoHide: true,
           topOffset: 30
         });
+        reset()
         setTimeout(() => {
           navigation.navigate('Profile');
         }, 1500);
@@ -106,6 +107,7 @@ const LoginForm = () => {
         }
       });
       if (!isMatchFound) {
+        setLoading(false)
         Toast.show({
           type: 'error',
           text1: t('USERNAME_NOT_FOUND'),
@@ -190,11 +192,19 @@ const LoginForm = () => {
           rules={{ required: true }}
           defaultValue=""
         />
-        <Button
-          title={loading ? t('loggingIn') : t('login')}
+        <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
           disabled={loading}
-        />
+          style={{
+            backgroundColor: '#3498db',
+            padding: 10,
+            borderRadius: 5,
+          }}
+        >
+          <Text style={{ color: 'white', textAlign: 'center' }}>
+            {loading ? t("loggingIn") : t("login")}
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

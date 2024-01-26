@@ -10,7 +10,8 @@ import { useAuthStore } from "../store/useAuthStore";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import RNPickerSelect from "react-native-picker-select";
-import { validations } from "../config/config";
+import { MIN_PASSWORD_LENGTH, validations } from "../config/config";
+import Toast from "react-native-toast-message";
 
 const RegisterForm = () => {
   const { t } = useTranslation();
@@ -21,24 +22,46 @@ const RegisterForm = () => {
   const schema = z
     .object({
       username: z.string(),
-      email: z.string().email(),
-      password: z.string().min(8),
+      email: z.string(),
+      password: z.string(),
       country: z.string().min(1),
     })
-    .refine((data) => data.username.length >= 1, {
-      path: ["username"],
-      message: t("shortUserName"),
+    .refine(data => data.password.length >= MIN_PASSWORD_LENGTH, {
+      path: ['password'],
+      message: 'PASSWORD_TOO_SHORT',
     })
-    .refine((data) => data.username.length <= 10, {
-      path: ["username"],
-      message: t("longUserName"),
-    });
+    .refine(
+      (data) => data.username.length >= validations[data.country].userNameMinChars,
+      {
+        path: ['username'],
+        message: 'USERNAME_TOO_SHORT_MIN_CHARS',
+      }
+    )
+    .refine((data) => data.username.length <= 15, {
+      path: ['username'],
+      message: 'USERNAME_TOO_LONG',
+    })
+    .refine(
+      (data) => !!data.username.match(validations[data.country].validRegex),
+      {
+        path: ['username'],
+        message: 'userNameIncorrectFormat',
+      }
+    ).refine(
+      (data) => data.email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/),
+      {
+        path: ['email'],
+        message: 'INVALID_EMAIL',
+      }
+    );
 
   const {
     control,
     handleSubmit,
     reset,
     formState: { errors },
+    getValues,
+    
   } = useForm({
     resolver: zodResolver(schema),
   });
@@ -52,8 +75,6 @@ const RegisterForm = () => {
   } = useAuthStore();
 
   const onSubmit = async (data: any) => {
-    
-    console.log(data);
     setLoading(true);
     reset();
     try {
@@ -74,31 +95,33 @@ const RegisterForm = () => {
           country: data.country,
         });
         setLoading(false);
-        console.log("Document written with ID: ", docRef.id);
-        alert("Account created successfully");
-
+        reset()
         navigation.navigate("Profile");
       } catch (error) {
-        debugger;
+        showFailureErrorToast()
         setLoading(false);
-        alert(t("USER_CREATION_NOT_SUCCESSFUL"));
-        console.error("Error adding document: ", error);
       }
     } catch (error) {
-      debugger;
+      showFailureErrorToast()
       setLoading(false);
-      alert(
-        error.message.includes("email-already-in-use")
-          ? t("EMAIL_EXISTS")
-          : t("USER_CREATION_FAILED")
-      );
-      console.error("Registration fail", error.message);
     }
   };
+
+  const showFailureErrorToast = () => {
+    Toast.show({
+      type: 'error', // or 'error', 'info', 'custom'
+      text1: t('USER_CREATION_FAILED'),
+      text2: '',
+      visibilityTime: 2000,
+      autoHide: true,
+      topOffset: 30
+    });
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.form}>
+      <Toast/>
         <Text style={[styles.title]}>{t("register")}</Text>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>{t("username")}</Text>
@@ -110,15 +133,14 @@ const RegisterForm = () => {
                 onChangeText={field.onChange}
                 value={field.value}
                 style={styles.input}
+                autoCapitalize="none"
               />
             )}
             name="username"
             rules={{ required: true }}
             defaultValue=""
           />
-          <Text style={styles.error}>
-            {errors.username?.message && <>{errors.username?.message}</>}
-          </Text>
+          <Text style={styles.error}>{errors.username?.message && <>{t(errors.username?.message, {minLength: validations[getValues('country')]?.userNameMinChars})}</>}</Text>
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>{t("email")}</Text>
@@ -130,15 +152,14 @@ const RegisterForm = () => {
                 onChangeText={field.onChange}
                 value={field.value}
                 style={styles.input}
+                autoCapitalize="none"
               />
             )}
             name="email"
             rules={{ required: true }}
             defaultValue=""
           />
-          <Text style={styles.error}>
-            {errors.email?.message && <>{errors.email?.message}</>}
-          </Text>
+          <Text style={styles.error}>{errors.email?.message && <>{t(errors.email?.message)}</>}</Text>
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>{t("password")}</Text>
@@ -151,15 +172,14 @@ const RegisterForm = () => {
                 value={field.value}
                 style={styles.input}
                 secureTextEntry
+                autoCapitalize="none"
               />
             )}
             name="password"
             rules={{ required: true }}
             defaultValue=""
           />
-          <Text style={styles.error}>
-            {errors.password?.message && <>{errors.password?.message}</>}
-          </Text>
+          <Text style={styles.error}>{errors.password?.message && <>{t(errors.password?.message, {minLength: MIN_PASSWORD_LENGTH})}</>}</Text>
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>{t("country")}</Text>
@@ -244,7 +264,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 8,
-    color: "white",
+    color: "#000",
   },
   inputIOS: {
     fontSize: 16,
@@ -253,7 +273,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 8,
-    color: "white",
+    color: "#000",
   },
 });
 
