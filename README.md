@@ -55,6 +55,9 @@ The app is configured to use Firebase for user authentication and Firestore to s
 - **Multiple Languages:** The app supports multiple languages, and users can select their preferred language from the dropdown in the header.
 - **RTL Support:** The application supports Right-to-Left (RTL) layout for languages like Arabic.
 
+## Push Notifications
+- Demo video is available. First check - https://drive.google.com/file/d/1e33eyHnFq5awgsZIxL6CIelvaWaXqYkR/view?usp=drive_link and then https://drive.google.com/file/d/1McO4zzAqx1e4LwIAsaNNoDyJx15BsPdj/view?usp=drive_link
+
 ## Contributing
 
 If you would like to contribute to the project, feel free to open issues or submit pull requests.
