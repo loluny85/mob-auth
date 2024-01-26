@@ -1,7 +1,7 @@
 {  
     "userNameShort": "Username too long",
     "userNameLong": "Username too short",
-    "userNameIncorrectFormat": "Username not per correct format",
+    "userNameIncorrectFormat": "Username format is incorrect",
     "username": "Username",
     "email": "Email",
     "password": "Password",
@@ -19,5 +19,6 @@
     "checkYourEmail": "Check your email",
     "enterEmail": "Enter email",
     "resetPassword": "Reset password",
-    "signedOut": "Signed out successfully"
+    "signedOut": "Signed out successfully",
+    "sendingEmail": "Sending Email..."
 }

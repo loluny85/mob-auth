@@ -19,5 +19,6 @@
   "checkYourEmail": "Vérifiez votre e-mail",
   "enterEmail": "Entrez l'adresse e-mail",
   "resetPassword": "Réinitialiser le mot de passe",
-  "signedOut": "Déconnexion réussie"
+  "signedOut": "Déconnexion réussie",
+  "sendingEmail": "Envoi de l'e-mail..."
 }

@@ -5,5 +5,13 @@
     "USER_FETCH_FAILED": "Échec de la récupération des détails de l'utilisateur",
     "EMAIL_EXISTS": "L'adresse e-mail existe déjà.",
     "RESET_PASSWORD_FAILED": "Échec de la réinitialisation du mot de passe",
-    "SIGNOUT_FAILED": "Échec de la déconnexion"
+    "SIGNOUT_FAILED": "Échec de la déconnexion",
+    "INVALID_EMAIL": "Adresse e-mail invalide",
+    "USERNAME_NOT_FOUND": "Nom d'utilisateur introuvable",
+    "USERNAME_TOO_SHORT": "Nom d'utilisateur trop court",
+    "PASSWORD_TOO_SHORT": "Mot de passe trop court. Minimum {{minLength}} caractères.",
+    "USERNAME_TOO_SHORT_MIN_CHARS": "Nom d'utilisateur trop court. Min {{minLength}} caractères.",
+    "USERNAME_TOO_LONG": "Nom d'utilisateur trop long.",
+    "USERNAME_IN_FORMAT_ERR": "Le nom d'utilisateur doit commencer par I",
+    "USERNAME_FR_FORMAT_ERR": "Le nom d'utilisateur doit commencer par FR"
 }

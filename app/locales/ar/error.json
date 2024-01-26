@@ -5,5 +5,13 @@
     "USER_FETCH_FAILED": "فشل جلب تفاصيل المستخدم",
     "EMAIL_EXISTS": "عنوان البريد الإلكتروني موجود بالفعل.",
     "RESET_PASSWORD_FAILED": "فشلت إعادة تعيين كلمة المرور",
-    "SIGNOUT_FAILED": "فشلت عملية الخروج"
+    "SIGNOUT_FAILED": "فشلت عملية الخروج",
+    "INVALID_EMAIL": "بريد إلكتروني غير صالح",
+    "USERNAME_NOT_FOUND": "اسم المستخدم غير موجود",
+    "USERNAME_TOO_SHORT": "اسم المستخدم قصير جدا",
+    "PASSWORD_TOO_SHORT": "كلمة المرور قصيرة جدا. الحد الأدنى {{minLength}} أحرف.",
+    "USERNAME_TOO_SHORT_MIN_CHARS": "اسم المستخدم قصير جداً. الحد الأدنى {{minLength}} أحرف.",
+    "USERNAME_TOO_LONG": "اسم المستخدم طويل جداً.",
+    "USERNAME_IN_FORMAT_ERR": "يجب أن يبدأ اسم المستخدم بحرف I",
+    "USERNAME_FR_FORMAT_ERR": "يجب أن يبدأ اسم المستخدم بحرف FR"
 }

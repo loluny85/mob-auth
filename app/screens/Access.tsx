@@ -42,9 +42,8 @@ const App = () => {
                   {resetPassword ? <ResetPasswordForm /> : null}
                 </View>
                 <View>
-                <Text className="font-bold">{t('accountDontHave')}</Text>
-
-                  <Button title="register" onPress={toggleForm}/>
+                {/* <Text className="font-bold">{t('accountDontHave')}</Text> */}
+                  <Button title="Create account" onPress={toggleForm}/>
                 </View>
               </>
             ) : null}

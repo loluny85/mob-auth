@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet , Text} from 'react-native';
+import { View, TextInput, Button, StyleSheet , Text, TouchableOpacity} from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -57,11 +57,19 @@ const ResetForm = () => {
           rules={{ required: true }}
           defaultValue=""
         />
-        <Button
-          title="Reset Password"
+        <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
           disabled={loading}
-        />
+          style={{
+            backgroundColor: '#3498db',
+            padding: 10,
+            borderRadius: 5,
+          }}
+        >
+          <Text style={{ color: 'white', textAlign: 'center' }}>
+            Reset Password
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

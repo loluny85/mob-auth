@@ -5,5 +5,13 @@
     "USER_FETCH_FAILED": "Fetching user details failed",
     "EMAIL_EXISTS": "Email id already exists",
     "RESET_PASSWORD_FAILED": "Reset password failed",
-    "SIGNOUT_FAILED": "Signout failed"
+    "SIGNOUT_FAILED": "Signout failed",
+    "INVALID_EMAIL": "Invalid email",
+    "USERNAME_NOT_FOUND": "Username/Email not found",
+    "USERNAME_TOO_SHORT": "Username/Email too short",
+    "USERNAME_TOO_SHORT_MIN_CHARS": "Username too short. Min {{minLength}} characters.",
+    "PASSWORD_TOO_SHORT": "Password too short. Min {{minLength}} characters.",
+    "USERNAME_TOO_LONG": "Username too long.",
+    "USERNAME_IN_FORMAT_ERR": "Username should begin with I",
+    "USERNAME_FR_FORMAT_ERR": "Username should begin with FR"
 }

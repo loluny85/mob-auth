@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -185,11 +185,19 @@ const RegisterForm = () => {
             {errors.country?.message && <>{errors.password?.message}</>}
           </Text>
         </View>
-        <Button
-          title={loading ? t("creatingUser") : t("register")}
+        <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
           disabled={loading}
-        />
+          style={{
+            backgroundColor: '#3498db',
+            padding: 10,
+            borderRadius: 5,
+          }}
+        >
+          <Text style={{ color: 'white', textAlign: 'center' }}>
+            {loading ? t("creatingUser") : t("register")}
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

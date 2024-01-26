@@ -4,6 +4,7 @@ type ValidationConfig = {
     validRegex: string | any;
     country: string;
     code: string;
+    formatErrorMsg?: string;
 };
 
 type ValidationConfigs = {
@@ -17,14 +18,16 @@ export const validations: ValidationConfigs = {
         userNameMinChars: 5,
         validRegex: /^[Ii][a-zA-Z]*$/,
         country: "India",
-        code: "IN"
+        code: "IN",
+        formatErrorMsg: 'USERNAME_IN_FORMAT_ERR'
     },
     FR: {
         lang: 'fr',
         userNameMinChars: 6,
         validRegex: /^FR[a-zA-Z0-9%_]*$/,
         country: "France",
-        code: "FR"
+        code: "FR",
+        formatErrorMsg: 'USERNAME_FR_FORMAT_ERR'
     },
     AE: {
         lang: 'ar',
@@ -39,4 +42,7 @@ export const languageOptions = [
     { value: "en", label: "English" },
     { value: "fr", label: "Français" },
     { value: "ar", label: "عربي" }
-  ];
+];
+
+export const MIN_PASSWORD_LENGTH = 8
+export const MIN_USERNAME_LENGTH = 6
