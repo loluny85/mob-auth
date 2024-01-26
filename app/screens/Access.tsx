@@ -38,8 +38,8 @@ const App = () => {
             {isLogin ? (
               <>
                 <View>
-                <Button title="reset" />
-                  {/* {resetPassword ? <ResetPasswordForm /> : null} */}
+                <Button title="Reset password" onPress={()=>{setResetPassword(true)}}/>
+                  {resetPassword ? <ResetPasswordForm /> : null}
                 </View>
                 <View>
                 <Text className="font-bold">{t('accountDontHave')}</Text>
