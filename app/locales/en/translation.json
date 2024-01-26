@@ -21,5 +21,6 @@
     "resetPassword": "Reset password",
     "signedOut": "Signed out successfully",
     "sendingEmail": "Sending Email...",
-    "createAccount": "Create account"
+    "createAccount": "Create account",
+    "userCreated": "Account created successfully"
 }

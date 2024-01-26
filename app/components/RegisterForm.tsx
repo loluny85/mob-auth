@@ -96,7 +96,18 @@ const RegisterForm = () => {
         });
         setLoading(false);
         reset()
-        navigation.navigate("Profile");
+        Toast.show({
+          type: 'success', // or 'error', 'info', 'custom'
+          text1: t('userCreated'),
+          text2: '',
+          visibilityTime: 2000,
+          autoHide: true,
+          topOffset: 30
+        });
+        setTimeout(() => {
+          navigation.navigate("Profile");
+        }, 1500);
+        
       } catch (error) {
         showFailureErrorToast()
         setLoading(false);

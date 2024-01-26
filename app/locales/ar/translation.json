@@ -21,5 +21,6 @@
     "resetPassword": "إعادة تعيين كلمة المرور",
     "signedOut": "تم تسجيل الخروج بنجاح",
     "sendingEmail": "إرسال البريد الإلكتروني...",
-    "createAccount": "إنشاء حساب"
+    "createAccount": "إنشاء حساب",
+    "userCreated": "تم إنشاء الحساب بنجاح"
 }

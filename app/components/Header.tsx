@@ -10,6 +10,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from "@/firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast  from 'react-native-toast-message';
 
 const Header = () => {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -35,17 +36,33 @@ const Header = () => {
       await signOut(auth);
       await AsyncStorage.clear();
       clearLocalState()
-      alert('signedout')
+      Toast.show({
+        type: 'success',
+        text1: t('signedOut'),
+        text2: '',
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 30
+      });
+
       setTimeout(() => {
         navigation.navigate('Access');
       }, 1500);
     } catch (err) {
-      alert('some error')
+      Toast.show({
+        type: 'error',
+        text1: t('SIGNOUT_FAILED'),
+        text2: '',
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 30
+      });
     }
   };
 
   return (
     <View style={styles.container}>
+        <Toast/>
       <Ionicons name="basketball" size={24} color="white"></Ionicons>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {isAuthenticated && (
