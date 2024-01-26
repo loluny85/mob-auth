@@ -3,30 +3,18 @@ import { View, StyleSheet, ScrollView, Text, Button } from "react-native";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../components/LangSwitcher";
 import Header from "../components/Header";
 import ResetPasswordForm from "../components/ResetPasswordForm";
 import useThemeStore from "../store/useThemeStore";
-import { useNavigation } from "@react-navigation/native";
-import { useAuthStore } from "../store/useAuthStore";
-
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const response = useAuthStore()
   const { t } = useTranslation();
-  const navigation = useNavigation();
   const [resetPassword, setResetPassword] = useState(false);
   const { isRtl } = useThemeStore();
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
-
-  // const handleResetPassword = (data: string) => {
-  //   setResetPassword(true);
-  // };
-
-  // handleResetPassword('abc')
 
   return (
     <View>
